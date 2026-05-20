@@ -191,6 +191,43 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── INSTAGRAM ─────────────────────────────────────── */}
+      <section className="py-20 px-6 bg-[#fdf6f0]">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="text-pink-500 font-semibold text-sm uppercase tracking-widest">Síguenos</span>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-[#120608] mt-2">
+              Estamos en Instagram
+            </h2>
+            <p className="text-gray-400 mt-3">Mira los resultados, tips y novedades en nuestro perfil</p>
+          </div>
+
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer max-w-sm mx-auto">
+            <Image
+              src="/recursos/imagenes/instagram.jpeg"
+              alt="Vale Glow Hair en Instagram"
+              width={500}
+              height={700}
+              className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-8 text-center">
+              <p className="text-white font-heading text-2xl font-bold mb-1">@vale_glowhair</p>
+              <p className="text-pink-300 text-sm mb-6">Nutrición capilar 100% natural</p>
+              <a
+                href="https://www.instagram.com/vale_glowhair"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold px-8 py-3 rounded-full shadow-lg hover:shadow-pink-500/40 transition-all duration-300 hover:-translate-y-1"
+              >
+                <InstagramIcon />
+                Seguir en Instagram
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── CÓMO COMPRAR ──────────────────────────────────── */}
       <section id="comprar"
         className="py-20 px-6"

@@ -33,7 +33,7 @@ export default function Testimonials() {
           className="relative rounded-3xl overflow-hidden border border-pink-500/20 bg-[#1a0810] shadow-2xl flex flex-col"
         >
           {/* Quote superior */}
-          <div className="p-7 flex flex-col gap-4 flex-1">
+          <div className="p-7 flex flex-col gap-4" style={{ height: 220 }}>
             {/* Estrellas */}
             <div className="flex gap-1">
               {[...Array(r.stars)].map((_, j) => (
@@ -68,8 +68,8 @@ export default function Testimonials() {
           </div>
 
           {/* Screenshot como prueba */}
-          <div className="relative group px-4 pb-5">
-            <div className="absolute top-3 left-7 z-10 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5">
+          <div className="relative overflow-hidden group" style={{ height: 340 }}>
+            <div className="absolute top-3 left-3 z-10 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5">
               <svg className="w-3 h-3 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
@@ -78,9 +78,8 @@ export default function Testimonials() {
             <Image
               src={r.screenshot}
               alt={`Reseña de ${r.name}`}
-              width={500}
-              height={900}
-              className="w-full h-auto rounded-2xl object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+              fill
+              className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
             />
           </div>
         </motion.div>

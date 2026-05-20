@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 const reviews = [
   {
@@ -21,7 +24,10 @@ const reviews = [
 ];
 
 export default function Testimonials() {
+  const [lightboxIndex, setLightboxIndex] = useState(-1);
+
   return (
+    <>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       {reviews.map((r, i) => (
         <motion.div
@@ -68,7 +74,11 @@ export default function Testimonials() {
           </div>
 
           {/* Screenshot como prueba */}
-          <div className="relative overflow-hidden group" style={{ height: 340 }}>
+          <div
+            className="relative overflow-hidden group cursor-zoom-in"
+            style={{ height: 500 }}
+            onClick={() => setLightboxIndex(i)}
+          >
             <div className="absolute top-3 left-3 z-10 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1.5">
               <svg className="w-3 h-3 text-green-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -81,9 +91,26 @@ export default function Testimonials() {
               fill
               className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
             />
+            {/* Icono ampliar */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="bg-black/50 backdrop-blur-sm rounded-full p-3">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 111 11a6 6 0 0116 0zM11 8v6M8 11h6" />
+                </svg>
+              </div>
+            </div>
           </div>
         </motion.div>
       ))}
     </div>
+
+    <Lightbox
+      open={lightboxIndex >= 0}
+      index={lightboxIndex}
+      close={() => setLightboxIndex(-1)}
+      slides={reviews.map((r) => ({ src: r.screenshot }))}
+      styles={{ container: { backgroundColor: "rgba(0,0,0,0.95)" } }}
+    />
+    </>
   );
 }

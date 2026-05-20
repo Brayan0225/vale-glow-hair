@@ -1,69 +1,68 @@
 "use client";
 
-import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const pairs = [
   {
-    before: "/recursos/imagenes/vale/Antes/vale-2.jpeg",
-    after: "/recursos/imagenes/vale/Despues/valeria-2.jpeg",
-    label: "Nutrición & definición",
+    before: { src: "/recursos/imagenes/vale/Antes/vale-2.jpeg", label: "Cabello seco y sin vida" },
+    after: { src: "/recursos/imagenes/vale/Despues/valeria-2.jpeg", label: "Rizos definidos y brillantes" },
   },
   {
-    before: "/recursos/imagenes/vale/Antes/vale-1.jpeg",
-    after: "/recursos/imagenes/vale/Despues/valeria-1.jpeg",
-    label: "Hidratación profunda",
+    before: { src: "/recursos/imagenes/vale/Antes/vale-1.jpeg", label: "Sin tratamiento" },
+    after: { src: "/recursos/imagenes/vale/Despues/valeria-1.jpeg", label: "Nutrida y radiante" },
   },
 ];
 
 export default function BeforeAfter() {
   return (
-    <div className="grid md:grid-cols-2 gap-8">
-      {pairs.map((pair) => (
-        <div key={pair.label} className="flex flex-col gap-4">
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl" style={{ height: 480 }}>
-            <ReactCompareSlider
-              style={{ width: "100%", height: "100%" }}
-              handle={
-                <div className="flex flex-col items-center gap-1 select-none">
-                  <div className="w-0.5 h-16 bg-white/80" />
-                  <div className="w-10 h-10 rounded-full bg-white shadow-xl flex items-center justify-center">
-                    <svg className="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 9l-4 3 4 3M16 9l4 3-4 3" />
-                    </svg>
-                  </div>
-                  <div className="w-0.5 h-16 bg-white/80" />
-                </div>
-              }
-              itemOne={
-                <div className="relative w-full h-full">
-                  <ReactCompareSliderImage
-                    src={pair.before}
-                    alt="Antes"
-                    style={{ objectFit: "cover" }}
-                  />
-                  <div className="absolute top-4 left-4 bg-black/60 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-widest">
-                    Antes
-                  </div>
-                </div>
-              }
-              itemTwo={
-                <div className="relative w-full h-full">
-                  <ReactCompareSliderImage
-                    src={pair.after}
-                    alt="Después"
-                    style={{ objectFit: "cover" }}
-                  />
-                  <div className="absolute top-4 right-4 bg-pink-500 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-widest">
-                    Después
-                  </div>
-                </div>
-              }
+    <div className="flex flex-col gap-12">
+      {pairs.map((pair, i) => (
+        <motion.div
+          key={i}
+          className="grid grid-cols-2 gap-2 md:gap-4 rounded-3xl overflow-hidden shadow-2xl"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: i * 0.15 }}
+        >
+          {/* ANTES */}
+          <div className="relative group overflow-hidden" style={{ height: 480 }}>
+            <Image
+              src={pair.before.src}
+              alt="Antes"
+              fill
+              className="object-cover object-top grayscale transition-all duration-700 group-hover:grayscale-0"
             />
+            <div className="absolute inset-0 bg-black/30" />
+            <div className="absolute top-4 left-4">
+              <span className="bg-black/70 text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest">
+                Antes
+              </span>
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
+              <p className="text-white/80 text-sm">{pair.before.label}</p>
+            </div>
           </div>
-          <p className="text-center text-pink-500 font-semibold text-sm uppercase tracking-widest">
-            {pair.label}
-          </p>
-        </div>
+
+          {/* DESPUÉS */}
+          <div className="relative group overflow-hidden" style={{ height: 480 }}>
+            <Image
+              src={pair.after.src}
+              alt="Después"
+              fill
+              className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute top-4 right-4">
+              <span className="bg-pink-500 text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-lg">
+                Después
+              </span>
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/70 to-transparent">
+              <p className="text-white font-semibold text-sm">{pair.after.label}</p>
+            </div>
+          </div>
+        </motion.div>
       ))}
     </div>
   );

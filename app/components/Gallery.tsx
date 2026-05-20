@@ -3,8 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
+import AppLightbox from "./AppLightbox";
 
 const images = [
   { src: "/recursos/imagenes/vale/valeria-2.jpeg", label: "Rizos definidos ✨" },
@@ -99,14 +98,11 @@ export default function Gallery() {
         ))}
       </motion.div>
 
-      <Lightbox
+      <AppLightbox
         open={index >= 0}
         index={index}
-        close={() => setIndex(-1)}
         slides={images.map((img) => ({ src: img.src }))}
-        styles={{
-          container: { backgroundColor: "rgba(0,0,0,0.92)" },
-        }}
+        onClose={() => setIndex(-1)}
       />
     </>
   );

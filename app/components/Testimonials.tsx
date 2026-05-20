@@ -3,8 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Lightbox from "yet-another-react-lightbox";
-import "yet-another-react-lightbox/styles.css";
+import AppLightbox from "./AppLightbox";
 
 const reviews = [
   {
@@ -104,12 +103,11 @@ export default function Testimonials() {
       ))}
     </div>
 
-    <Lightbox
+    <AppLightbox
       open={lightboxIndex >= 0}
       index={lightboxIndex}
-      close={() => setLightboxIndex(-1)}
       slides={reviews.map((r) => ({ src: r.screenshot }))}
-      styles={{ container: { backgroundColor: "rgba(0,0,0,0.95)" } }}
+      onClose={() => setLightboxIndex(-1)}
     />
     </>
   );

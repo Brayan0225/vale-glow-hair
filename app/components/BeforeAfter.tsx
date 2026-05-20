@@ -32,7 +32,7 @@ export default function BeforeAfter() {
               src={pair.before.src}
               alt="Antes"
               fill
-              className="object-cover object-top grayscale transition-all duration-700 group-hover:grayscale-0"
+              className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0"
             />
             <div className="absolute inset-0 bg-black/30" />
             <div className="absolute top-4 left-4">
@@ -51,7 +51,7 @@ export default function BeforeAfter() {
               src={pair.after.src}
               alt="Después"
               fill
-              className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute top-4 right-4">
               <span className="bg-pink-500 text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest shadow-lg">

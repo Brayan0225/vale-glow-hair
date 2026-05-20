@@ -21,6 +21,7 @@ export default function AppLightbox({ open, index, slides, onClose }: Props) {
       render={{
         buttonClose: () => (
           <button
+            key="close"
             onClick={onClose}
             aria-label="Cerrar"
             style={{

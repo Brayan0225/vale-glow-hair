@@ -10,7 +10,6 @@ const images = [
   { src: "/recursos/imagenes/vale/valeria-3.jpeg", label: "Nutrición profunda" },
   { src: "/recursos/imagenes/vale/valeria-4.jpeg", label: "Brillo natural" },
   { src: "/recursos/imagenes/vale/valeria-5.jpeg", label: "Hidratación" },
-  { src: "/recursos/imagenes/reseñas/resena-1.jpeg", label: "Clienta feliz 🩷" },
 ];
 
 const container = {

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Gallery from "./components/Gallery";
+import BeforeAfter from "./components/BeforeAfter";
 
 const WA_NUMBER = "573003980014";
 const WA_BASE = `https://wa.me/${WA_NUMBER}`;
@@ -138,6 +139,20 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ── ANTES Y DESPUÉS ───────────────────────────────── */}
+      <section className="py-20 px-6 bg-[#fdf6f0]">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-14">
+            <span className="text-pink-500 font-semibold text-sm uppercase tracking-widest">La transformación</span>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-[#120608] mt-2">
+              Antes y después
+            </h2>
+            <p className="text-gray-400 mt-3">Arrastra el slider y comprueba la diferencia</p>
+          </div>
+          <BeforeAfter />
         </div>
       </section>
 

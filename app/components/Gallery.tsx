@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import AppLightbox from "./AppLightbox";
@@ -28,73 +28,38 @@ export default function Gallery() {
   return (
     <>
       <motion.div
-        className="grid grid-cols-2 md:grid-cols-3 gap-4"
+        className="grid grid-cols-2 md:grid-cols-3 md:grid-rows-2 gap-4"
+        style={{ height: "auto" }}
         variants={container}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
       >
-        {/* Imagen grande */}
-        <motion.div
-          variants={item}
-          className="col-span-1 row-span-2 md:row-span-2 relative overflow-hidden rounded-3xl cursor-pointer"
-          style={{ minHeight: 320 }}
-          whileHover="hover"
-          onClick={() => setIndex(0)}
-        >
-          <motion.div
-            className="w-full h-full"
-            variants={{ hover: { scale: 1.07 } }}
-            transition={{ duration: 0.5, ease: "easeOut" as const }}
-            style={{ position: "absolute", inset: 0 }}
-          >
-            <Image src={images[0].src} alt={images[0].label} fill className="object-cover" />
-          </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-          <motion.span
-            className="absolute bottom-4 left-4 text-white text-sm font-semibold"
-            variants={{ hover: { opacity: 1, y: 0 } }}
-            initial={{ opacity: 0, y: 8 }}
-            transition={{ duration: 0.3 }}
-          >
-            {images[0].label}
-          </motion.span>
-          {/* Icono lupa */}
-          <div className="absolute top-3 right-3 bg-black/40 rounded-full p-2 opacity-0 group-hover:opacity-100">
-            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11A6 6 0 111 11a6 6 0 0116 0z" />
-            </svg>
-          </div>
-        </motion.div>
+        {/* Imagen 0 — móvil: ancho completo | PC: col 1 filas 1-2 */}
+        <GalleryItem img={images[0]} index={0} onClick={setIndex}
+          className="col-span-2 md:col-span-1 md:row-span-2"
+          style={{ aspectRatio: "16/9", minHeight: 220 } as React.CSSProperties}
+          labelSize="text-sm"
+        />
 
-        {/* Imágenes pequeñas */}
-        {images.slice(1).map((img, i) => (
-          <motion.div
-            key={img.src}
-            variants={item}
-            className="relative overflow-hidden rounded-2xl aspect-square cursor-pointer"
-            whileHover="hover"
-            onClick={() => setIndex(i + 1)}
-          >
-            <motion.div
-              className="w-full h-full"
-              variants={{ hover: { scale: 1.09 } }}
-              transition={{ duration: 0.45, ease: "easeOut" as const }}
-              style={{ position: "absolute", inset: 0 }}
-            >
-              <Image src={img.src} alt={img.label} fill className="object-cover" />
-            </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-            <motion.span
-              className="absolute bottom-3 left-3 text-white text-xs font-semibold"
-              variants={{ hover: { opacity: 1, y: 0 } }}
-              initial={{ opacity: 0, y: 6 }}
-              transition={{ duration: 0.25 }}
-            >
-              {img.label}
-            </motion.span>
-          </motion.div>
-        ))}
+        {/* Imagen 1 — móvil: col 1 | PC: col 2 fila 1 */}
+        <GalleryItem img={images[1]} index={1} onClick={setIndex}
+          className="col-span-1"
+          style={{ aspectRatio: "1/1" }}
+        />
+
+        {/* Imagen 2 — móvil: col 2 | PC: col 3 fila 1 */}
+        <GalleryItem img={images[2]} index={2} onClick={setIndex}
+          className="col-span-1"
+          style={{ aspectRatio: "1/1" }}
+        />
+
+        {/* Imagen 3 — móvil: ancho completo | PC: cols 2-3 fila 2 */}
+        <GalleryItem img={images[3]} index={3} onClick={setIndex}
+          className="col-span-2"
+          style={{ aspectRatio: "16/7" }}
+          labelSize="text-sm"
+        />
       </motion.div>
 
       <AppLightbox
@@ -104,5 +69,46 @@ export default function Gallery() {
         onClose={() => setIndex(-1)}
       />
     </>
+  );
+}
+
+function GalleryItem({
+  img, index, onClick, className = "", style = {}, labelSize = "text-xs",
+}: {
+  img: { src: string; label: string };
+  index: number;
+  onClick: (i: number) => void;
+  className?: string;
+  style?: React.CSSProperties;
+  labelSize?: string;
+}) {
+  return (
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 30 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" as const } },
+      }}
+      className={`relative overflow-hidden rounded-2xl cursor-pointer group ${className}`}
+      style={style}
+      whileHover="hover"
+      onClick={() => onClick(index)}
+    >
+      <motion.div
+        className="absolute inset-0"
+        variants={{ hover: { scale: 1.07 } }}
+        transition={{ duration: 0.5, ease: "easeOut" as const }}
+      >
+        <Image src={img.src} alt={img.label} fill className="object-cover" />
+      </motion.div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <motion.span
+        className={`absolute bottom-3 left-3 text-white font-semibold ${labelSize}`}
+        variants={{ hover: { opacity: 1, y: 0 } }}
+        initial={{ opacity: 0, y: 6 }}
+        transition={{ duration: 0.25 }}
+      >
+        {img.label}
+      </motion.span>
+    </motion.div>
   );
 }

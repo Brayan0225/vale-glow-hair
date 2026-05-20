@@ -172,17 +172,19 @@ export default function Home() {
       </section>
 
       {/* ── TESTIMONIOS ───────────────────────────────────── */}
-      <section id="testimonios" className="py-20 px-6 bg-[#fdf6f0]">
-        <div className="max-w-4xl mx-auto">
+      <section id="testimonios" className="py-20 px-6" style={{ background: "linear-gradient(160deg, #120608 0%, #2d0a18 100%)" }}>
+        <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <span className="text-pink-500 font-semibold text-sm uppercase tracking-widest">Lo que dicen</span>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-[#120608] mt-2">
+            <span className="text-pink-400 font-semibold text-sm uppercase tracking-widest">Lo que dicen</span>
+            <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mt-2">
               Nuestras clientas hablan
             </h2>
+            <p className="text-pink-200/60 mt-3">Reseñas reales, sin editar</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="group relative overflow-hidden rounded-3xl shadow-xl cursor-pointer">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+            {/* Reseña 1 */}
+            <div className="group relative overflow-hidden rounded-3xl shadow-2xl border border-pink-500/20">
               <Image
                 src="/recursos/imagenes/reseñas/resena-1.jpeg"
                 alt="Reseña clienta 1"
@@ -190,9 +192,15 @@ export default function Home() {
                 height={700}
                 className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent rounded-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-pink-400 animate-pulse" />
+                <span className="text-pink-300 text-xs font-semibold">Clienta verificada</span>
+              </div>
             </div>
-            <div className="group relative overflow-hidden rounded-3xl shadow-xl cursor-pointer">
+
+            {/* Reseña 2 */}
+            <div className="group relative overflow-hidden rounded-3xl shadow-2xl border border-pink-500/20 md:mt-10">
               <Image
                 src="/recursos/imagenes/reseñas/resena-2.jpeg"
                 alt="Reseña clienta 2"
@@ -200,7 +208,11 @@ export default function Home() {
                 height={700}
                 className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent rounded-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4 flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-pink-400 animate-pulse" />
+                <span className="text-pink-300 text-xs font-semibold">Clienta verificada</span>
+              </div>
             </div>
           </div>
         </div>

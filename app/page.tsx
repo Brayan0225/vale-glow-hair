@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Gallery from "./components/Gallery";
 import BeforeAfter from "./components/BeforeAfter";
+import Testimonials from "./components/Testimonials";
 
 const WA_NUMBER = "573003980014";
 const WA_BASE = `https://wa.me/${WA_NUMBER}`;
@@ -182,39 +183,7 @@ export default function Home() {
             <p className="text-pink-200/60 mt-3">Reseñas reales, sin editar</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-            {/* Reseña 1 */}
-            <div className="group relative overflow-hidden rounded-3xl shadow-2xl border border-pink-500/20">
-              <Image
-                src="/recursos/imagenes/reseñas/resena-1.jpeg"
-                alt="Reseña clienta 1"
-                width={500}
-                height={700}
-                className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-pink-400 animate-pulse" />
-                <span className="text-pink-300 text-xs font-semibold">Clienta verificada</span>
-              </div>
-            </div>
-
-            {/* Reseña 2 */}
-            <div className="group relative overflow-hidden rounded-3xl shadow-2xl border border-pink-500/20 md:mt-10">
-              <Image
-                src="/recursos/imagenes/reseñas/resena-2.jpeg"
-                alt="Reseña clienta 2"
-                width={500}
-                height={700}
-                className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-pink-400 animate-pulse" />
-                <span className="text-pink-300 text-xs font-semibold">Clienta verificada</span>
-              </div>
-            </div>
-          </div>
+          <Testimonials />
         </div>
       </section>
 

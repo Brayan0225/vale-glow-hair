@@ -1,26 +1,81 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --pink: #e91e8c;
+  --pink-light: #f472b6;
+  --dark: #120608;
+  --dark-card: #1e0a10;
+  --cream: #fdf6f0;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-background: var(--cream);
+  --color-foreground: var(--dark);
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-inter);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  font-family: var(--font-inter), Arial, sans-serif;
+}
+
+.font-heading {
+  font-family: var(--font-playfair), serif;
+}
+
+.neon-text {
+  color: #ff69b4;
+  text-shadow:
+    0 0 7px #ff69b4,
+    0 0 10px #ff69b4,
+    0 0 21px #ff69b4,
+    0 0 42px #e91e8c;
+}
+
+.btn-whatsapp {
+  background: linear-gradient(135deg, #e91e8c, #c2185b);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(233, 30, 140, 0.4);
+}
+
+.btn-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(233, 30, 140, 0.6);
+}
+
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(233, 30, 140, 0.2);
+}
+
+.floating-wa {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease forwards;
+}
+.delay-100 { animation-delay: 0.1s; opacity: 0; }
+.delay-200 { animation-delay: 0.2s; opacity: 0; }
+.delay-300 { animation-delay: 0.3s; opacity: 0; }
+.delay-500 { animation-delay: 0.5s; opacity: 0; }
+
+html {
+  scroll-behavior: smooth;
 }

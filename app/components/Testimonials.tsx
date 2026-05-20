@@ -38,7 +38,7 @@ export default function Testimonials() {
           className="relative rounded-3xl overflow-hidden border border-pink-500/20 bg-[#1a0810] shadow-2xl flex flex-col"
         >
           {/* Quote superior */}
-          <div className="p-7 flex flex-col gap-4" style={{ height: 220 }}>
+          <div className="p-7 flex flex-col gap-4">
             {/* Estrellas */}
             <div className="flex gap-1">
               {[...Array(r.stars)].map((_, j) => (

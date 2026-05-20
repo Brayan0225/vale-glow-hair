@@ -27,39 +27,43 @@ export default function Gallery() {
 
   return (
     <>
+      {/* MÓVIL: img full / 2 cols / img full */}
       <motion.div
-        className="grid grid-cols-2 md:grid-cols-3 md:grid-rows-2 gap-4"
-        style={{ height: "auto" }}
+        className="flex flex-col gap-4 md:hidden"
         variants={container}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
       >
-        {/* Imagen 0 — móvil: ancho completo | PC: col 1 filas 1-2 */}
         <GalleryItem img={images[0]} index={0} onClick={setIndex}
-          className="col-span-2 md:col-span-1 md:row-span-2"
-          style={{ aspectRatio: "16/9", minHeight: 220 } as React.CSSProperties}
-          labelSize="text-sm"
-        />
-
-        {/* Imagen 1 — móvil: col 1 | PC: col 2 fila 1 */}
-        <GalleryItem img={images[1]} index={1} onClick={setIndex}
-          className="col-span-1"
-          style={{ aspectRatio: "1/1" }}
-        />
-
-        {/* Imagen 2 — móvil: col 2 | PC: col 3 fila 1 */}
-        <GalleryItem img={images[2]} index={2} onClick={setIndex}
-          className="col-span-1"
-          style={{ aspectRatio: "1/1" }}
-        />
-
-        {/* Imagen 3 — móvil: ancho completo | PC: cols 2-3 fila 2 */}
+          className="w-full" style={{ aspectRatio: "4/3" }} labelSize="text-sm" />
+        <div className="grid grid-cols-2 gap-4">
+          <GalleryItem img={images[1]} index={1} onClick={setIndex}
+            className="" style={{ aspectRatio: "1/1" }} />
+          <GalleryItem img={images[2]} index={2} onClick={setIndex}
+            className="" style={{ aspectRatio: "1/1" }} />
+        </div>
         <GalleryItem img={images[3]} index={3} onClick={setIndex}
-          className="col-span-2"
-          style={{ aspectRatio: "16/7" }}
-          labelSize="text-sm"
-        />
+          className="w-full" style={{ aspectRatio: "4/3" }} labelSize="text-sm" />
+      </motion.div>
+
+      {/* PC: 1 tall izq + 2 arriba der + 1 wide abajo der */}
+      <motion.div
+        className="hidden md:grid gap-4"
+        style={{ gridTemplateColumns: "1fr 1fr 1fr", gridTemplateRows: "300px 300px" }}
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-80px" }}
+      >
+        <GalleryItem img={images[0]} index={0} onClick={setIndex}
+          className="row-span-2" style={{}} labelSize="text-sm" />
+        <GalleryItem img={images[1]} index={1} onClick={setIndex}
+          className="" style={{}} />
+        <GalleryItem img={images[2]} index={2} onClick={setIndex}
+          className="" style={{}} />
+        <GalleryItem img={images[3]} index={3} onClick={setIndex}
+          className="col-span-2" style={{}} labelSize="text-sm" />
       </motion.div>
 
       <AppLightbox
